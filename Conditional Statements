@@ -1,0 +1,154 @@
+Question 1: Write a Java program to input the week number (1–7) and print the day of the week name using switch case.
+Solution 1: 
+import java.util.Scanner;
+
+public class WeekdayGenerator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a number (1-7): ");
+        int dayNumber = scanner.nextInt();
+
+        String dayName;
+
+        switch (dayNumber) {
+            case 1:
+                dayName = "Sunday";
+                break;
+            case 2:
+                dayName = "Monday";
+                break;
+            case 3:
+                dayName = "Tuesday";
+                break;
+            case 4:
+                dayName = "Wednesday";
+                break;
+            case 5:
+                dayName = "Thursday";
+                break;
+            case 6:
+                dayName = "Friday";
+                break;
+            case 7:
+                dayName = "Saturday";
+                break;
+            default:
+                dayName = "Invalid day number";
+        }
+
+        System.out.println("The day is: " + dayName);
+
+    
+    }
+}
+
+Question 2: Write a Java program to get a number from the user and print whether it is positive or negative.
+Solution 2:
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a number: ");
+        int number = scanner.nextInt();
+
+        if (number > 0) {
+            System.out.println("The number is positive.");
+        } else {
+            System.out.println("The number is negative.");
+        }
+        
+    }
+}
+
+Question 3: Write a program to print the multiplication table of a number N entered by the user.
+Solution 3:
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a number: ");
+        int number = scanner.nextInt();
+
+        System.out.println("Multiplication table for " + number + ":");
+        for (int i = 1; i <= 10; i++) {
+            int num = number * i;
+            System.out.println(number + " x " + i + " = " + num);
+        }
+
+
+    }
+}
+Question 4: How many times is "Avatar" printed?
+public class Main {
+    public static void main(String[] args) {
+        for (int i = 1; i <=5; i++) {
+            System.out.println("Avatar");
+          
+        }
+    }
+}
+A)8
+B)5
+C)10
+D)4
+Solution 4: B) 5.
+Question 5: How many times is "Avatar" printed?
+public class Main {
+    public static void main(String[] args) {
+        for (int i = 1; i <=5; i++) {
+            System.out.println("Avatar");
+         i+=2 
+        }
+    }
+}
+A)2
+B)5
+C)11
+D)6
+Solution 5: A) 2.
+
+Question 6: Write a program so that it prints 'You have a fever' if your temperature is above 100 and otherwise prints 'You don't have a fever'.
+Soulution 6:
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the body temperature: ");
+        int temperature = scanner.nextInt();
+
+        if (temperature > 100) {
+            System.out.println("You have a fever.");
+        } else {
+            System.out.println("You don't have a fever.");
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
