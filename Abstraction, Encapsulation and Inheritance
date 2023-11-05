@@ -1,5 +1,5 @@
 Question 1: Print the sum, difference and product of two complex numbers by creating a class named 'Complex' with separate methods for each operation whose real and imaginary parts are entered by the user.
-Solution: 
+Solution 1: 
 
 import java.util.Scanner;
 
@@ -62,4 +62,148 @@ public class Main {
     }
 }
 
-Question 2:  
+Question 2: What is the output of the program ?
+
+class Automobile {
+    private String drive() {
+        return "Driving vehicle";
+    }
+}
+
+class Car extends Automobile {
+    protected String drive() {
+        return "Driving car";
+    }
+}
+
+public class Main extends Car {
+    @Override
+    public final String drive() {
+        return "Driving electric car";
+    }
+
+    public static void main(String[] wheels) {
+        Car car = new Main();
+        System.out.print(car.drive());
+    }
+}
+Options are :
+1.Driving Vehical
+2.Driving electric car
+3.Dring car
+4.Compile error
+
+Solution 2: 2. Driving electric car
+
+
+Question 3 :What is the output of the following program?
+
+abstract class Car {
+    static {
+        System.out.print("1");
+    }
+
+    public Car(String name) {
+        super();
+        System.out.print("2");
+    }
+
+    {
+        System.out.print("3");
+    }
+}
+
+public class BlueCar extends Car {
+    {
+        System.out.print("4");
+    }
+
+    public BlueCar() {
+        super("blue");
+        System.out.print("5");
+    }
+
+    public static void main(String[] gears) {
+        new BlueCar();
+    }
+}
+
+
+
+
+
+Options are:
+1. 13245
+2. 1245
+3.54321
+4.Compile error
+
+Solution 3: 1:13245
+
+
+Question 4: What is the output the program ?
+
+class One{	
+	public One(){
+		System.out.print("One,");
+	}
+}
+class Two extends One{
+	public Two(){
+		System.out.print("Two,");
+	}
+}
+class Three extends Two{
+	public Three(){
+		System.out.print("Three");
+	}
+}
+
+public class Test{
+	
+	public static void main(String[] args){
+		Three three = new Three();
+	}		
+}
+
+Options are:
+a) Three
+b) One
+c) One,Two,Three
+d) Run-time error
+
+Solution 4:c) One,Two,Three
+
+Question 5:What is the output of the program?
+
+class Demo{
+	public Demo(int i){
+		System.out.println("int");
+	}
+	
+	public void Demo(short s){
+		System.out.println("short");
+	}
+}
+
+public class Test{
+	
+	public static void main(String[] args){	
+		short s = 10;
+		Demo demo = new Demo(s);
+	}		
+}
+
+Options are:
+a) int
+b) short
+c) Compile-time error
+d) Run-time error
+
+Solution 5: a) int
+
+
+
+
+
+
