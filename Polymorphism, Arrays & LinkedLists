@@ -1,0 +1,160 @@
+Question 1:
+What is the output of the following program?
+
+
+class SAM 
+{ 
+    protected void getData() 
+    { 
+        System.out.println("Inside SAM"); 
+    } 
+} 
+class SunandMoon extends SAM
+{ 
+    protected void getData() 
+    { 
+        System.out.println("Inside SunandMoon"); 
+    } 
+      
+    protected void getValue() 
+    { 
+        System.out.println("SunandMoon"); 
+    } 
+} 
+  
+public class Test 
+{ 
+    public static void main(String[] args) 
+    { 
+        GFG obj = new SunandMoon(); 
+        obj.getValue(); 
+    } 
+} 
+a) Compilation error
+b) Runtime error
+c) SunandMoon
+d) None of these
+
+Solution 1: a) Compilation error
+Question 2:
+4) What is the output of the following program?
+
+
+interface SAM 
+{ 
+    void myMethod(); 
+    void getInfo(); 
+} 
+  
+abstract class Sun implements SAM 
+{ 
+    void getData() 
+    { 
+        System.out.println("SunandMoon"); 
+    } 
+} 
+  
+public class Test extends Sun 
+{ 
+    public void myMethod() 
+    { 
+        System.out.println("SunandMoon"); 
+    } 
+    public void getInfo() 
+    { 
+        System.out.println("Sun"); 
+    } 
+      
+    public static void main(String[] args) 
+    { 
+        Sun obj = new Test(); 
+        obj.getInfo(); 
+    } 
+} 
+a) Sun
+b) Compilation error
+c) Runtime error
+d) None of these
+
+Solution 2: a) Sun
+
+Question 3:
+How to remove an element of array?
+
+Solution 3:
+import java.util.ArrayList;
+
+public class Main {
+   public static void main(String[] args) {
+      ArrayList objArray = new ArrayList();
+      objArray.clear();
+      objArray.add(0,"0th element");
+      objArray.add(1,"1st element");
+      objArray.add(2,"2nd element");
+      System.out.println("Array before removing an element"+objArray);
+      objArray.remove(1);
+      objArray.remove("0th element");
+      System.out.println("Array after removing an element"+objArray);
+   }
+}
+And the result will be:
+Array before removing an  element[0th element, 1st element, 2nd element]
+Array after removing an element[2nd element]
+
+Question 4:
+Write a code to show how to remove an item from the beginning of the list.
+
+Solution 4:
+import java.util.LinkedList;
+
+public class Main {
+  public static void main(String[] args) {
+    LinkedList<String> cars = new LinkedList<String>();
+    cars.add("Volvo");
+    cars.add("BMW");
+    cars.add("Ford");
+    cars.add("Mazda");
+    
+    // Use removeFirst() remove the first item from the list
+    cars.removeFirst();
+    System.out.println(cars);
+  }
+}
+And the result will be:
+[BMW, Ford, Mazda]
+
+Question 5:
+Write a code to show how to sort an ArrayList of Strings.
+
+Solution 5:
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class Main { 
+  public static void main(String[] args) { 
+    ArrayList<String> cars = new ArrayList<String>();
+    cars.add("Volvo");
+    cars.add("BMW");
+    cars.add("Ford");
+    cars.add("Mazda");
+    
+    Collections.sort(cars);
+
+    for (String i : cars) {
+      System.out.println(i);
+    }
+  } 
+}
+
+And the result will be:
+BMW
+Ford
+Mazda
+Volvo
+
+
+
+
+
+
+
