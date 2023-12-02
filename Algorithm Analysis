@@ -1,0 +1,126 @@
+Question 1:
+Find the time & space complexity of the following code:
+int a = 0;
+for (int i = 0; i < n; ++i) {
+    for (int j = n; j > i; --j) {
+        a = a + i + j;
+    }
+}
+
+Solution 1:
+Time Complexity:
+The time complexity is determined by the nested loops. Let's break it down:
+
+The outer loop (for (int i = 0; i < n; ++i)) runs 'n' times.
+The inner loop (for (int j = n; j > i; --j)) runs 'n-i' times for each iteration of the outer loop.
+So, the total number of iterations is the sum of the first 'n' natural numbers, which is given by the formula n*(n+1)/2.
+
+The time complexity is O(n^2).
+
+Space Complexity:
+The space complexity is related to the variable 'a', which is a single integer. It doesn't depend on the input size 'n', so the space complexity is O(1) (constant space).
+
+In summary:
+
+Time Complexity: O(n^2)
+Space Complexity: O(1)
+
+Question 2:
+Find the time & space complexity of floor Sqrt function in the following code to calculate square root of a number:
+class SqrtNum {
+    static int floorSqrt(int x) {
+        if (x == 0 || x == 1)
+            return x;
+        int i = 1, result = 1;
+        while (result <= x) {
+            i++;
+            result = i * i;
+        }
+        return i - 1;
+    }
+
+    public static void main(String[] args) {
+        int x = 11;
+        System.out.print(floorSqrt(x));
+    }
+}
+
+Solution 2:
+
+Time Complexity:
+The time complexity is determined by the while loop. In the worst case, the loop continues until result exceeds 'x'. The loop runs until result is greater than 'x' but does not depend directly on the input size.
+
+So, the time complexity is O(√x), where 'x' is the input number.
+
+Space Complexity:
+The space complexity is minimal. The function uses a constant amount of space for integer variables (i and result). Therefore, the space complexity is O(1) (constant space).
+
+In summary:
+
+Time Complexity: O(√x)
+Space Complexity: O(1)
+
+Question 3:
+Find the time complexity of the following:
+a. int i, j, k = 0;
+b. for (i = n / 2; i <= n; i++) {
+c.    for (j = 2; j <= n; j = j * 2) {
+d.       k = k + n / 2;
+e.    }
+f. }
+
+Options:
+a)O(n)
+b)O(N log N)
+c)O(n^2)
+d)O(n^2Logn)
+
+Solution 3:
+b)O(N log N)
+
+Question 4:
+What is the time complexity of the following code:
+int a = 0, i = N;
+while (i > 0) {
+	a += i;
+	i /= 2;
+}
+
+Options: 
+ 
+a) O(N)
+b) O(Sqrt(N))
+c) O(N / 2)
+d) O(log N)
+
+Solution 4:
+d) O(log N)
+
+Question 5:
+Consider the code snippet below. What is its time complexity?
+for (int i = 0; i < n; i++) {
+    for (int j = i; j < n; j++) {
+        System.out.println("Nested Loop!");
+    }
+}
+
+options:
+A. O(1)
+B. O(n)
+C. O(n^2)
+D. O(n log n)
+
+Solution 5:
+C. O(n^2)
+
+
+
+
+
+
+
+
+
+
+
+
