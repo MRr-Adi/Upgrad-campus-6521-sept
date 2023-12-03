@@ -1,0 +1,404 @@
+Question 1:
+The K- Means algorithm is an _______ algorithm.
+Options:
+a) Semi-supervised Learning 
+b) Unsupervised Learning 
+c) Supervised Learning
+d) None of the above.
+
+Solution 1:
+b) Unsupervised Learning
+
+Question 2 : Which of the following sorting algorithms is the most efficient in terms of time complexity on average?
+a) Bubble Sort
+b) Insertion Sort
+c) Selection Sort
+d) Merge Sort
+
+Solution 2:
+b) Insertion Sort
+
+Question 3:
+What is the Output ?
+
+class BinarySearch {
+
+	// Returns index of x if it is present in arr[l..
+	// r], else return -1
+	int binarySearch(int arr[], int l, int r, int x)
+	{
+		if (r >= l) {
+			int mid = l + (r - l) / 2;
+
+			// If the element is present at the
+			// middle itself
+			if (arr[mid] == x)
+				return mid;
+
+			// If element is smaller than mid, then
+			// it can only be present in left subarray
+			if (arr[mid] > x)
+				return binarySearch(arr, l, mid - 1, x);
+
+			// Else the element can only be present
+			// in right subarray
+			return binarySearch(arr, mid + 1, r, x);
+		}
+
+		// We reach here when element is not present
+		// in array
+		return -1;
+	}
+
+	// Driver code
+	public static void main(String args[])
+	{
+		BinarySearch ob = new BinarySearch();
+		int arr[] = { 2, 3, 4, 10, 40 };
+		int n = arr.length;
+		int x = 10;
+		int result = ob.binarySearch(arr, 0, n - 1, x);
+		if (result == -1)
+			System.out.println(
+				"Element is not present in array");
+		else
+			System.out.println(
+				"Element is present at index " + result);
+	}
+}
+
+Options:
+a)Element is present at index 1
+b)Element is present at index 4
+c)Element is present at index 3
+d)Element is present at index 2
+
+Solution 3:
+c)Element is present at index 3
+
+Question 4:
+What is the output ?
+
+public class InsertionSort {
+	/*Function to sort array using insertion sort*/
+	void sort(int arr[])
+	{
+		int n = arr.length;
+		for (int i = 1; i < n; ++i) {
+			int key = arr[i];
+			int j = i - 1;
+
+			/* Move elements of arr[0..i-1], that are
+			greater than key, to one position ahead
+			of their current position */
+			while (j >= 0 && arr[j] > key) {
+				arr[j + 1] = arr[j];
+				j = j - 1;
+			}
+			arr[j + 1] = key;
+		}
+	}
+
+	/* A utility function to print array of size n*/
+	static void printArray(int arr[])
+	{
+		int n = arr.length;
+		for (int i = 0; i < n; ++i)
+			System.out.print(arr[i] + " ");
+
+		System.out.println();
+	}
+
+	// Driver method
+	public static void main(String args[])
+	{
+		int arr[] = { 12, 11, 13, 5, 6 };
+
+		InsertionSort ob = new InsertionSort();
+		ob.sort(arr);
+
+		printArray(arr);
+	}
+};
+
+Options:
+a)5 6 11 12 13
+b)12 11 13 5 6
+c)13 5 6 12 11
+d) 3 6 4 8 11
+
+Solution 4:
+a)5 6 11 12 13
+
+Question 5:
+What is the output ?
+
+import java.io.*;
+
+class MergeSort {
+
+	// Merges two subarrays of arr[].
+	// First subarray is arr[l..m]
+	// Second subarray is arr[m+1..r]
+	void merge(int arr[], int l, int m, int r)
+	{
+		// Find sizes of two subarrays to be merged
+		int n1 = m - l + 1;
+		int n2 = r - m;
+
+		// Create temp arrays
+		int L[] = new int[n1];
+		int R[] = new int[n2];
+
+		// Copy data to temp arrays
+		for (int i = 0; i < n1; ++i)
+			L[i] = arr[l + i];
+		for (int j = 0; j < n2; ++j)
+			R[j] = arr[m + 1 + j];
+
+		// Merge the temp arrays
+
+		// Initial indices of first and second subarrays
+		int i = 0, j = 0;
+
+		// Initial index of merged subarray array
+		int k = l;
+		while (i < n1 && j < n2) {
+			if (L[i] <= R[j]) {
+				arr[k] = L[i];
+				i++;
+			}
+			else {
+				arr[k] = R[j];
+				j++;
+			}
+			k++;
+		}
+
+		// Copy remaining elements of L[] if any
+		while (i < n1) {
+			arr[k] = L[i];
+			i++;
+			k++;
+		}
+
+		// Copy remaining elements of R[] if any
+		while (j < n2) {
+			arr[k] = R[j];
+			j++;
+			k++;
+		}
+	}
+
+	// Main function that sorts arr[l..r] using
+	// merge()
+	void sort(int arr[], int l, int r)
+	{
+		if (l < r) {
+
+			// Find the middle point
+			int m = l + (r - l) / 2;
+
+			// Sort first and second halves
+			sort(arr, l, m);
+			sort(arr, m + 1, r);
+
+			// Merge the sorted halves
+			merge(arr, l, m, r);
+		}
+	}
+
+	// A utility function to print array of size n
+	static void printArray(int arr[])
+	{
+		int n = arr.length;
+		for (int i = 0; i < n; ++i)
+			System.out.print(arr[i] + " ");
+		System.out.println();
+	}
+
+	// Driver code
+	public static void main(String args[])
+	{
+		int arr[] = { 12, 11, 13, 5, 6, 7 };
+
+		System.out.println("Given array is");
+		printArray(arr);
+
+		MergeSort ob = new MergeSort();
+		ob.sort(arr, 0, arr.length - 1);
+
+		System.out.println("\nSorted array is");
+		printArray(arr);
+	}
+}
+
+Options:
+a)Given array is 
+  12 11 13 5 6 7 
+  Sorted array is 
+  5 6 7 11 12 13
+
+b) Given array is 
+   5 6 7 11 12 13 
+   Sorted array is 
+    12 11 13 5 6 7
+
+c) Given array is 
+   5 6 7 12 11 13
+   Sorted array is 
+   11 12 13 5 6 7
+
+Solution 5:
+a)Given array is 
+  12 11 13 5 6 7 
+  Sorted array is 
+  5 6 7 11 12 13
+
+Question 6:
+
+Write a program to search an element
+in a sorted and pivoted array and show the Output.
+
+import java.io.*;
+class Main {
+
+	/* Searches an element key in a
+	pivoted sorted array arrp[]
+	of size n */
+	static int pivotedBinarySearch(int arr[], int n,
+								int key)
+	{
+		int pivot = findPivot(arr, 0, n - 1);
+
+		// If we didn't find a pivot, then
+		// array is not rotated at all
+		if (pivot == -1)
+			return binarySearch(arr, 0, n - 1, key);
+
+		// If we found a pivot, then first
+		// compare with pivot and then
+		// search in two subarrays around pivot
+		if (arr[pivot] == key)
+			return pivot;
+		if (arr[0] <= key)
+			return binarySearch(arr, 0, pivot - 1, key);
+		return binarySearch(arr, pivot + 1, n - 1, key);
+	}
+
+	/* Function to get pivot. For array
+	3, 4, 5, 6, 1, 2 it returns
+	3 (index of 6) */
+	static int findPivot(int arr[], int low, int high)
+	{
+		// base cases
+		if (high < low)
+			return -1;
+		if (high == low)
+			return low;
+
+		/* low + (high - low)/2; */
+		int mid = (low + high) / 2;
+		if (mid < high && arr[mid] > arr[mid + 1])
+			return mid;
+		if (mid > low && arr[mid] < arr[mid - 1])
+			return (mid - 1);
+		if (arr[low] >= arr[mid])
+			return findPivot(arr, low, mid - 1);
+		return findPivot(arr, mid + 1, high);
+	}
+
+	/* Standard Binary Search function */
+	static int binarySearch(int arr[], int low, int high,
+							int key)
+	{
+		if (high < low)
+			return -1;
+
+		/* low + (high - low)/2; */
+		int mid = (low + high) / 2;
+		if (key == arr[mid])
+			return mid;
+		if (key > arr[mid])
+			return binarySearch(arr, (mid + 1), high, key);
+		return binarySearch(arr, low, (mid - 1), key);
+	}
+
+	// main function
+	public static void main(String args[])
+	{
+		// Let us search 3 in below array
+		int arr1[] = { 5, 6, 7, 8, 9, 10, 1, 2, 3 };
+		int n = arr1.length;
+		int key = 3;
+		System.out.println(
+			"Index of the element is : "
+			+ pivotedBinarySearch(arr1, n, key));
+	}
+}
+
+Output:
+Index of the element is : 8
+
+Question 7:
+Write a program to search an element in
+sorted and rotated array using
+single pass of Binary Search and show the output .
+
+import java.io.*;
+
+class Main {
+	// Returns index of key in arr[l..h]
+	// if key is present, otherwise returns -1
+	static int search(int arr[], int l, int h, int key)
+	{
+		if (l > h)
+			return -1;
+
+		int mid = (l + h) / 2;
+		if (arr[mid] == key)
+			return mid;
+
+		/* If arr[l...mid] first subarray is sorted */
+		if (arr[l] <= arr[mid]) {
+			/* As this subarray is sorted, we
+			can quickly check if key lies in
+			half or other half */
+			if (key >= arr[l] && key <= arr[mid])
+				return search(arr, l, mid - 1, key);
+			/*If key not lies in first half subarray,
+		Divide other half into two subarrays,
+		such that we can quickly check if key lies
+		in other half */
+			return search(arr, mid + 1, h, key);
+		}
+
+		/* If arr[l..mid] first subarray is not sorted,
+		then arr[mid... h] must be sorted subarray*/
+		if (key >= arr[mid] && key <= arr[h])
+			return search(arr, mid + 1, h, key);
+
+		return search(arr, l, mid - 1, key);
+	}
+
+	// main function
+	public static void main(String args[])
+	{
+		int arr[] = { 4, 5, 6, 7, 8, 9, 1, 2, 3 };
+		int n = arr.length;
+		int key = 3;
+		int i = search(arr, 0, n - 1, key);
+		if (i != -1)
+			System.out.println("Index: " + i);
+		else
+			System.out.println("Key not found");
+	}
+}
+
+Output:
+Index: 8
+
+
+
+
+
