@@ -1,1 +1,298 @@
+Question 1: Simplify Path given an absolute file path in Unix-style, simplify it.
+            The absolute path always begins with '/' (root directory), a dot in the path represents the current directory, and double dots represent the parent directory. 
+
+Solution 1:
+import java.util.Stack;
+
+public class SimplifyPath {
+    public static void main(String[] args) {
+        String filePath = "/a/./b/../../c/";
+        String simplifiedPath = simplifyPath(filePath);
+        System.out.println(simplifiedPath);
+    }
+
+    public static String simplifyPath(String path) {
+        String[] dirs = path.split("/");
+        Stack<String> stack = new Stack<>();
+
+        for (String dir : dirs) {
+            if (dir.equals("..")) {
+                if (!stack.isEmpty()) {
+                    stack.pop();
+                }
+            } else if (!dir.isEmpty() && !dir.equals(".")) {
+                stack.push(dir);
+            }
+        }
+
+        StringBuilder result = new StringBuilder("/");
+        for (String dir : stack) {
+            result.append(dir).append("/");
+        }
+
+        // Remove the trailing "/" if present
+        if (result.length() > 1) {
+            result.setLength(result.length() - 1);
+        }
+
+        return result.toString();
+    }
+}
+
+Question 2:Decode a string We have an encoded strings and the task is to decode it. The pattern in which the strings are encoded is as follows.
+           Sample Input 1: 2[cv]Sample Output 1: cvcvSample Input 2: 3[b2[v]]LSample Output 2: bvvbvvbvv
+Solution 2:
+          import java.util.Stack;
+
+public class DecodeString {
+
+    public static String decodeString(String s) {
+        Stack<Integer> countStack = new Stack<>();
+        Stack<String> resultStack = new Stack<>();
+        StringBuilder currentString = new StringBuilder();
+        int count = 0;
+
+        for (char ch : s.toCharArray()) {
+            if (Character.isDigit(ch)) {
+                // Accumulate the digit to form the count
+                count = count * 10 + (ch - '0');
+            } else if (ch == '[') {
+                // Push the current count and result to stacks
+                countStack.push(count);
+                resultStack.push(currentString.toString());
+
+                // Reset the currentString and count for the next segment
+                currentString = new StringBuilder();
+                count = 0;
+            } else if (ch == ']') {
+                // Pop the count and result from stacks
+                int repeatCount = countStack.pop();
+                String lastResult = resultStack.pop();
+
+                // Repeat the currentString the specified number of times
+                StringBuilder repeatedString = new StringBuilder();
+                for (int i = 0; i < repeatCount; i++) {
+                    repeatedString.append(currentString);
+                }
+
+                // Combine with the previous result
+                currentString = new StringBuilder(lastResult + repeatedString);
+            } else {
+                // Append characters to the currentString
+                currentString.append(ch);
+            }
+        }
+
+        return currentString.toString();
+    }
+
+    public static void main(String[] args) {
+        // Sample Input 1
+        String input1 = "2[cv]";
+        System.out.println("Sample Input 1: " + decodeString(input1));
+
+        // Sample Input 2
+        String input2 = "3[b2[v]]LS";
+        System.out.println("Sample Input 2: " + decodeString(input2));
+    }
+}
+
+Question 3:Generate Binary Numbers Given a number N.The task is to generate and print all binary numbers with decimal values from 1 to N.
+           Sample Input 1: N =2 Sample Output 1: 1 10
+
+Solution 3:
+
+ import java.util.LinkedList;
+import java.util.Queue;
+
+public class GenerateBinaryNumbers {
+
+    public static void generateBinaryNumbers(int N) {
+        // Use a queue to perform a level-order traversal
+        Queue<String> queue = new LinkedList<>();
+
+        // Start from 1 and enqueue it
+        queue.add("1");
+
+        // Perform level-order traversal up to N
+        for (int i = 0; i < N; i++) {
+            // Dequeue and print the front of the queue
+            String current = queue.poll();
+            System.out.print(current + " ");
+
+            // Enqueue the next binary numbers by appending 0 and 1
+            queue.add(current + "0");
+            queue.add(current + "1");
+        }
+    }
+
+    public static void main(String[] args) {
+        // Sample Input 1
+        int input1 = 2;
+        System.out.println("Sample Input 1:");
+        generateBinaryNumbers(input1);
+    }
+}
+
+Question 4:Connect n ropes with minimum cost Given are N ropes of different lengths,the task is to connect these ropes in toone rope with minimum cost,
+           such that the cost to connect two ropes is equal to the sum of their lengths.
+           Sample Input 1: N = 4, arr = [4 3 2 6] Sample Output 1: 29 Sample Input 2: N = 2, arr = [1 2 3] Sample Output 2: 9
+
+Solution 4:
+          import java.util.PriorityQueue;
+
+public class ConnectRopes {
+
+    public static int minCostToConnectRopes(int N, int[] arr) {
+        // Use a priority queue to always pick the smallest two ropes
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+
+        // Add all ropes to the priority queue
+        for (int rope : arr) {
+            minHeap.add(rope);
+        }
+
+        int totalCost = 0;
+
+        // Continue until there is only one rope left in the priority queue
+        while (minHeap.size() > 1) {
+            // Extract the two smallest ropes
+            int first = minHeap.poll();
+            int second = minHeap.poll();
+
+            // Combine the two ropes and add the cost
+            int combined = first + second;
+            totalCost += combined;
+
+            // Add the combined rope back to the priority queue
+            minHeap.add(combined);
+        }
+
+        return totalCost;
+    }
+
+    public static void main(String[] args) {
+        // Sample Input 1
+        int input1_N = 4;
+        int[] input1_arr = {4, 3, 2, 6};
+        System.out.println("Sample Input 1: " + minCostToConnectRopes(input1_N, input1_arr));
+
+        // Sample Input 2
+        int input2_N = 3;
+        int[] input2_arr = {1, 2, 3};
+        System.out.println("Sample Input 2: " + minCostToConnectRopes(input2_N, input2_arr));
+    }
+}
+
+Question 5:Maximum of all subarrays of size k We have an array arr[] of size N and an integer K.
+           Find the maximum for each and every contiguous subarray of size K.
+           Sample Input 1:N=9, K=3 arr= 1 2 3 1 4 5 2 3 6 Sample Output 1: 3 3 4 5 5 5 6
+
+Solution 5:
+
+import java.util.Deque;
+import java.util.LinkedList;
+
+public class MaximumSubarrays {
+
+    public static void printMaxOfSubarrays(int N, int K, int[] arr) {
+        Deque<Integer> deque = new LinkedList<>();
+
+        // Process the first K elements separately
+        for (int i = 0; i < K; i++) {
+            while (!deque.isEmpty() && arr[i] >= arr[deque.peekLast()]) {
+                deque.removeLast();
+            }
+            deque.addLast(i);
+        }
+
+        // Process the remaining elements
+        for (int i = K; i < N; i++) {
+            System.out.print(arr[deque.peekFirst()] + " ");
+
+            // Remove elements that are out of the current window
+            while (!deque.isEmpty() && deque.peekFirst() <= i - K) {
+                deque.removeFirst();
+            }
+
+            // Remove smaller elements from the rear
+            while (!deque.isEmpty() && arr[i] >= arr[deque.peekLast()]) {
+                deque.removeLast();
+            }
+
+            deque.addLast(i);
+        }
+
+        // Print the maximum of the last subarray
+        System.out.print(arr[deque.peekFirst()]);
+    }
+
+    public static void main(String[] args) {
+        // Sample Input 1
+        int input1_N = 9;
+        int input1_K = 3;
+        int[] input1_arr = {1, 2, 3, 1, 4, 5, 2, 3, 6};
+        System.out.println("Sample Output 1:");
+        printMaxOfSubarrays(input1_N, input1_K, input1_arr);
+    }
+}
+
+Question 6: Write a program to implement a stack with push and pop operations. Find the top element of the stack and check if the stack is empty or not.
+
+Solution 6:import java.util.Stack;
+
+public class CustomStack {
+
+    public static void main(String[] args) {
+        // Create a custom stack
+        MyStack stack = new MyStack();
+
+        // Push elements onto the stack
+        stack.push(5);
+        stack.push(10);
+        stack.push(7);
+
+        // Print the top element
+        System.out.println("Top element: " + stack.top());
+
+        // Pop an element from the stack
+        stack.pop();
+
+        // Check if the stack is empty
+        System.out.println("Is stack empty? " + stack.isEmpty());
+    }
+}
+
+class MyStack {
+    private Stack<Integer> stack;
+
+    public MyStack() {
+        this.stack = new Stack<>();
+    }
+
+    // Push operation
+    public void push(int element) {
+        stack.push(element);
+    }
+
+    // Pop operation
+    public void pop() {
+        if (!stack.isEmpty()) {
+            stack.pop();
+        }
+    }
+
+    // Top operation
+    public int top() {
+        return stack.isEmpty() ? -1 : stack.peek();
+    }
+
+    // Check if the stack is empty
+    public boolean isEmpty() {
+        return stack.isEmpty();
+    }
+}
+
+Output: Top element: 7
+        Is stack empty? false
 
